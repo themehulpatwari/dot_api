@@ -5,11 +5,8 @@ from util import (
 
 app = Flask(__name__)
 
-@app.route('/parse-ics', methods=['GET'])
-def parse_ics():
-    data = request.get_json()
-    ics_url = data.get('ics_url')
-    
+@app.route('/parse-ics/<path:ics_url>', methods=['GET'])
+def parse_ics(ics_url):
     if not ics_url:
         return jsonify({'error': 'ics_url parameter is required'}), 400
     
